@@ -1,4 +1,4 @@
-package com.yedam;
+package com.yedam.vo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,12 +11,12 @@ import java.util.Date;
  * 입사일자)2020-02-04)
  * 급여(300,350)
  */
-public class Employee {
-	private int empNo = 0;
-	private String empName = null;
-	private String telNo = null;
-	private Date hireDate = new Date();
-	private int salary = 0;
+public class Employee { // tbl_employees
+	private int empNo; // emp_no칼럼.
+	private String empName;// emp_name
+	private String telNo; // tel_no
+	private Date hireDate; // hire_date
+	private int salary; // salary
 
 	// 생성자.
 	public Employee() {

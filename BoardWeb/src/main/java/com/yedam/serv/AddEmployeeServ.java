@@ -1,4 +1,4 @@
-package com.yedam;
+package com.yedam.serv;
 
 import java.io.IOException;
 
@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.yedam.dao.EmpDAO;
+import com.yedam.vo.Employee;
 
 //init - service - destroy :서블릿의 생명주기.
 @WebServlet("/addEmpServlet")
@@ -25,7 +28,8 @@ public class AddEmployeeServ extends HttpServlet {
 		EmpDAO edao = new EmpDAO();
 		boolean result = edao.registerEmp(new Employee(Integer.parseInt(eno), ename,tel));
 		if(result) {
-			resp.sendRedirect("sample");//addEmpServlet -> sample 페이지이동.
+			resp.getWriter().print("처리성공");
+//			resp.sendRedirect("sample");//addEmpServlet -> sample 페이지이동.
 		}else {
 			resp.getWriter().print("처리실패");
 		}

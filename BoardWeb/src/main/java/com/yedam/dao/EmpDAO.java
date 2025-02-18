@@ -1,39 +1,25 @@
-package com.yedam;
+package com.yedam.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpDAO {
-	// Connection객체
-	Connection getConnect() {
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "hr";
-		String password = "hr";
-		Connection conn = null;
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(url, user, password);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return conn;
-	}// end of getConnect();
+import com.yedam.vo.Employee;
+
+// Data Access 
+
+public class EmpDAO extends DAO {
 
 	// 상세조회
 	public Employee selectEmp(int empNo) {
 		String query = "select * from tbl_employees " + "where emp_no = ?";
 		try {
-			PreparedStatement stmt = getConnect().prepareStatement(query);
-			stmt.setInt(1, empNo);
-
-			ResultSet rs = stmt.executeQuery(); // 조회.
+			psmt = getConnect().prepareStatement(query);
+			psmt.setInt(1, empNo);
+			rs = psmt.executeQuery(); // 조회.
 			if (rs.next()) {// 조회결과가 한건 있으면
 				Employee emp = new Employee();
 				emp.setEmpNo(rs.getInt("emp_no")); // 칼럼값.
@@ -61,7 +47,7 @@ public class EmpDAO {
 				+ "', " + emp.getSalary()//
 				+ ")";
 		try {
-			Statement stmt = getConnect().createStatement();
+			 stmt = getConnect().createStatement();
 			int r = stmt.executeUpdate(query);
 			if (r > 0) {
 				return true;
@@ -71,8 +57,8 @@ public class EmpDAO {
 		}
 		return false;
 	} // end of registerEmp().
-		//
-
+	
+	//목록
 	public List<Employee> search(Employee emp) {
 		List<Employee> empList = new ArrayList<>();
 		String qry = "select * from tbl_employees "
@@ -95,9 +81,7 @@ public class EmpDAO {
 				empl.setHireDate(rs.getDate("hire_date"));
 				empl.setSalary(rs.getInt("salary"));
 				empl.setTelNo(rs.getString("tel_no"));
-
 				empList.add(empl);
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
