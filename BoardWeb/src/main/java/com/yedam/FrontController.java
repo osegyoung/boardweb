@@ -11,8 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.Control;
+import com.yedam.control.MainControl;
+import com.yedam.control.ModifBoardControl;
+import com.yedam.control.ModifyControl;
+import com.yedam.control.addFormControl;
 
 /*
  * MVC에서 Control역할.
@@ -28,9 +33,14 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		map.put("/main.do", new MainControl());
 //		map.put("url", "servlet");// addStudent.do AddStudentServlet
-		map.put("/boardList.do", new BoardListControl());
-		map.put("/addboard.do", new AddBoardControl());
+		map.put("/boardList.do", new BoardListControl()); // 글목록.
+		map.put("/addForm.do", new addFormControl()); // 등록화면.
+		map.put("/addBoard.do", new AddBoardControl()); // 등록처리.
+		map.put("/board.do", new BoardControl()); // 상세화면.
+		map.put("/modifyForm.do", new ModifyControl()); // 수정화면.
+		map.put("/modifyBoard.do",new ModifBoardControl());
 	}
 
 	@Override
@@ -43,7 +53,6 @@ public class FrontController extends HttpServlet {
 		String page = uri.substring(context.length());
 		
 		System.out.println(page);
-		// map컬렉션에서 key를 입력하면 value반환.
 		Control control = map.get(page);
 		control.exec(req, resp);
 	}

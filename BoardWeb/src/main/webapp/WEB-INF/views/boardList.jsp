@@ -4,22 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-h3{
-color : white;
-background-color :blue;  
-padding: 10px;
-border:5px solid black;
-font-size: 150%;
-}
-</style>
-</head>
-<body>
+<jsp:include page="includes/header.jsp"></jsp:include>
 
 
 	<!-- html주석문. -->
@@ -31,14 +16,14 @@ font-size: 150%;
 	List<BoardVO> list = (List <BoardVO>) request.getAttribute("list");
 	%>
 	<h3>게시글 목록</h3> 
-	<table border = '2'>	
+	<table class="table table-striped">	
 		<tbody>
 			<%
 			for (BoardVO board : list) {// for반복문 시작.
 			%>
 			<tr>
 				<td><%=board.getBoardNo() %></td>
-				<td><%=board.getTitle() %></td>
+				<td><a href="board.do?bno=<%=board.getBoardNo() %>"><%=board.getTitle() %></a></td>
 				<td><%=board.getWriter() %></td>
 				<td><%=board.getWriterDate() %></td>
 				<td><%=board.getViewCnt() %></td>
@@ -47,8 +32,8 @@ font-size: 150%;
 			} // for 반복문 종료
 			%>
 		</tbody>
-	</table>
-	
+	</table>	
+	<jsp:include page="includes/footer.jsp"></jsp:include>
 </body>
 </html>
 
