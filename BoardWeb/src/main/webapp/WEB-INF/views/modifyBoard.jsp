@@ -6,7 +6,8 @@
 <%
 BoardVO board = (BoardVO) request.getAttribute("board");
 %>
-<tr>
+<form action="modifyBoard.do">
+<input type="hidden" name="bno" value="<%=board.getBoardNo() %>">
 	<table class="table">
 		<tr>
 			<th>글번호</th>
@@ -15,14 +16,14 @@ BoardVO board = (BoardVO) request.getAttribute("board");
 			<td><%=board.getViewCnt()%></td>
 		</tr>
 		<tr>
-			<th>제목</th>
-			<td colspan="3"><input type="text" class="form-control"
-				value="<%=board.getTitle()%>"></td>
+			<th>제목</th>			
+			<td colspan="3">
+			<input type="text" class="form-control" name="title" value="<%=board.getTitle()%>"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3"><textarea cols="45" rows="3" class="form-control"><%=board.getContent()%></textarea>
-			</td>
+			<td colspan="3"><textarea cols="45" rows="3" name="content"
+					class="form-control"><%=board.getContent()%></textarea></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -30,7 +31,14 @@ BoardVO board = (BoardVO) request.getAttribute("board");
 			<th>작성날짜</th>
 			<td><%=board.getWriterDate()%></td>
 		</tr>
+		<tr>
+			<td colspan="4" align="center">
+			<input type="submit" value="변경" class="btn btn-warning">
+			<input type="reset" value="취소" class="btn btn-secondary">
+			</td>
+		</tr>
 	</table>
+</form>
 
 
-	<jsp:include page="includes/footer.jsp"></jsp:include>
+<jsp:include page="includes/footer.jsp"></jsp:include>
