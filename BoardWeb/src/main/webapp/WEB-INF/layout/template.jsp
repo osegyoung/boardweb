@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<h3>template</h3>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,25 +17,8 @@
     </head>
     <body>
         <div class="d-flex" id="wrapper">
-            <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글 목록</a>
-                   
-                    <!--  세션(loginId) 값을 저장 -->
-                    <%String logId = (String) session.getAttribute("loginId"); 
-                    if (logId == null) { //,"" 
-                    %>
-                      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="login.do">로그인(화면)</a>
-                    <%} else{%>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="addForm.do">글등록(화면)</a>
-                      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃(<%=logId %>)</a>
-                    <%} %>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
-                </div>
-            </div>
+            <!-- header위치. -->
+            <tiles:insertAttribute name="header"/>
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
@@ -61,7 +45,13 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-               
-
-</body>
+                   <!-- body위치. -->
+                   <tiles:insertAttribute name="body"/>
+                </div>
+            </div>
+        </div>
+        <!-- footer위치. -->
+        <tiles:insertAttribute name="footer"/>
+    </body>
 </html>
+

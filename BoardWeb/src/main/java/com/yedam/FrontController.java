@@ -5,28 +5,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AjaxControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
 import com.yedam.control.Control;
+import com.yedam.control.DataControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LogoutControl;
 import com.yedam.control.MainControl;
+import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifBoardControl;
 import com.yedam.control.ModifyControl;
 import com.yedam.control.RemoveBoardControl;
+import com.yedam.control.RemoveMemberControl;
 import com.yedam.control.addFormControl;
 
 /*
  * MVC에서 Control역할.
  * url요청 -> 서블릿.
  */
-@WebServlet("*.do")
+//@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	Map<String, Control> map;
 
@@ -51,6 +54,12 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginControl());// 로그인
 		map.put("/login.do", new LoginControl()); // 로그인 처리
 		map.put("/logout.do", new LogoutControl()); // 로그아웃 처리
+		
+		map.put("/memberList.do", new MemberListControl()); // 회원목록.
+		map.put("/testAjax.do", new AjaxControl());
+		map.put("/testData.do", new DataControl());
+		// 회원 삭제
+		map.put("/removeMember.do", new RemoveMemberControl());
 	}
 
 	@Override

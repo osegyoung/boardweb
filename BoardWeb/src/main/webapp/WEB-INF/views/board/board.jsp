@@ -1,7 +1,7 @@
 <%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="includes/header.jsp"></jsp:include>
+
 <%
 BoardVO board = (BoardVO) request.getAttribute("board");
 String msg = (String) request.getAttribute("msg");
@@ -57,4 +57,4 @@ String logId = (String) session.getAttribute("loginId");
 				alert("권한을 확인하세요.");
 	});
 	</script>
-	<jsp:include page="includes/footer.jsp"></jsp:include>
+	
