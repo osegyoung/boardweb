@@ -20,7 +20,7 @@ public class LoginControl implements Control {
 		// 요청방식(get, post)
 		if (req.getMethod().equals("GET")) {
 			// 1.로그인 화면.
-			req.getRequestDispatcher("/WEB-INF/views/member/login.tiles").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
 
 		} else if (req.getMethod().equals("POST")) {
 			// 2.로그인 기능.

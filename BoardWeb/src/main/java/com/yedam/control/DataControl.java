@@ -22,7 +22,7 @@ public class DataControl implements Control {
 		MemberDAO mdao = new MemberDAO(); // 회원정보를 json문자열로 생성.
 		List<MemberVO> members = mdao.members();
 		json = "[";
-		for(int i=0; i<members.size(); i++) {
+		for(int i = 0; i < members.size(); i++) {
 			json += "{\"memberId\":\""+ members.get(i).getMemberId() 
 					+"\",\"passwd\":\""+ members.get(i).getPasswd() 
 					+"\",\"memberName\":\""+ members.get(i).getMemberName() 
@@ -30,12 +30,12 @@ public class DataControl implements Control {
 					+ "\"}";
 					if(i+1 < members.size()) {
 						json += ",";
-		}
+					}
 		}
 		json += "]";
 		
 		resp.getWriter().print(json);
-	}
+	}//end of void
 
-}
+}//end of class
 

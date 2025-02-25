@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddMemberControl;
+import com.yedam.control.AddReplyControl;
 import com.yedam.control.AjaxControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
@@ -23,6 +25,8 @@ import com.yedam.control.ModifBoardControl;
 import com.yedam.control.ModifyControl;
 import com.yedam.control.RemoveBoardControl;
 import com.yedam.control.RemoveMemberControl;
+import com.yedam.control.RemoveReplyControl;
+import com.yedam.control.ReplyListControl;
 import com.yedam.control.addFormControl;
 
 /*
@@ -60,17 +64,23 @@ public class FrontController extends HttpServlet {
 		map.put("/testData.do", new DataControl());
 		// 회원 삭제
 		map.put("/removeMember.do", new RemoveMemberControl());
+		//회원 등록
+		map.put("/addMember.do", new AddMemberControl());
+		//댓글관련
+		map.put("/replyList.do", new ReplyListControl()); //목록.
+		map.put("/addReply.do", new AddReplyControl()); //등록.
+		map.put("/removeReply.do", new RemoveReplyControl()); // 삭제
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		System.out.println("front control");
-		//http:localhost:8080/BoardWeb/addStudent.do => url
-		//BoardWeb/addStudent.do => uri
-		String uri = req.getRequestURI(); //"/BoardWeb/addStudent.do
+		// http:localhost:8080/BoardWeb/addStudent.do => url
+		// BoardWeb/addStudent.do => uri
+		String uri = req.getRequestURI(); // "/BoardWeb/addStudent.do
 		String context = req.getContextPath(); // "/BoardWeb"
 		String page = uri.substring(context.length());
-		
+
 		System.out.println(page);
 		Control control = map.get(page);
 		control.exec(req, resp);
