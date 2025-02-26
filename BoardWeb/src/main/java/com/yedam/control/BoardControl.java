@@ -21,7 +21,7 @@ public class BoardControl implements Control {
 		BoardVO board = bdao.getBoard(Integer.parseInt(bno)); //문자열 "14" -> int 14 변경. 조회수 증가.
 		//요청정보의 attribute활용.
 		req.setAttribute("board", board); // attribute
-		req.getRequestDispatcher("/WEB-INF/views/board.jsp").forward(req, resp);
+		req.getRequestDispatcher("board/board.tiles").forward(req, resp);
 	}
 
 }

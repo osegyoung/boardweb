@@ -17,23 +17,21 @@ public class ReplyListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html;charset=utf-8");
-		//원본글번호.
+		// 원본글번호.
 		String bno = req.getParameter("bno");
-		
-		//DAO활용.
+		String page = req.getParameter("page");
+		System.out.println(bno + "," + page);
+		// DAO활용.
 		ReplyDAO rdao = new ReplyDAO();
-		List<ReplyVO> list = rdao.replyList(Integer.parseInt(bno));
-		
-		//gson활용.
+		List<ReplyVO> list = rdao.replyList(Integer.parseInt(bno), Integer.parseInt(page));
+
+		// gson활용.
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(list); // 자바객체 -> json문자열.
-		
+
 		System.out.println(json); // 콘솔.
 		resp.getWriter().print(json);// 웹브라우저
-		
-		
-		
-		
+
 	}
 
 }
