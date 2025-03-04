@@ -17,6 +17,7 @@ import com.yedam.control.AddFormControl;
 import com.yedam.control.AddMemberControl;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.AjaxControl;
+import com.yedam.control.ApiControl;
 import com.yedam.control.BBFullDatacontrol;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
@@ -29,10 +30,12 @@ import com.yedam.control.DataTableControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LogoutControl;
 import com.yedam.control.MainControl;
+import com.yedam.control.MapControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyControl;
 import com.yedam.control.RemoveBoardControl;
+import com.yedam.control.RemoveData;
 import com.yedam.control.RemoveMemberControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyCount;
@@ -91,7 +94,12 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/Full.do", new AAFullcontrol());
 		map.put("/FullData.do", new BBFullDatacontrol()); //  풀데이터 조회
-		map.put("/InsertEvent.do",new CCInsertEventControl());// 등록
+		map.put("/InsertEvent.do",new CCInsertEventControl());// 등록		
+		map.put("/removeDate.do", new RemoveData()); // 삭제
+		
+		map.put("/api.do", new ApiControl());
+		map.put("/map.do", new MapControl());
+		
 	}
 
 	@Override

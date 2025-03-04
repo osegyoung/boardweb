@@ -5,17 +5,24 @@
 
 <mapper namespace="com.yedam.mapper.ReplyMapper">
 
-<insert id="insertEvent"> <!--   -->
-insert into tbl_calendar(title, start_dat, end_date)
-values(#{title}, #{start}, #{end})
-</insert>
+	<delete id="deleteEvent">
+		delete from tbl_calendar
+		where title = #{title}
+		and start_date = #{start}
+		and end_date = #{end}
+	</delete>
+
+	<insert id="insertEvent"> <!-- -->
+		insert into tbl_calendar(title, start_dat, end_date)
+		values(#{title}, #{start}, #{end})
+	</insert>
 
 
 	<select id="fullData" resultType="map">
-	select title as "title"
+		select title as "title"
 		,start_date as "start"
 		,end_date as "end"
-	from tbl_calendar
+		from tbl_calendar
 	</select>
 
 	<select id="replyListAll" resultType="reply" parameterType="int">
